@@ -8,7 +8,6 @@ MovieDb::App.controllers :movies do
   get :index, :with => :id do
     @movie = Movie.find(params[:id])
     @title = @movie.title
-    @genres = @movie.genres
     render 'movie'
   end
 

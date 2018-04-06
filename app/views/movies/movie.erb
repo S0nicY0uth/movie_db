@@ -7,9 +7,11 @@
 </head>
 <body>
 <h1><%= @title %></h1>
+<p>Year: <%= @movie.year %></p>
+<p><%= @movie.description %></p>
 <h3>Genres</h3>
 <ul>
-  <% @genres.each do |genre| %>
+  <% @movie.genres.each do |genre| %>
     <li><a href="/genres/<%= genre.id %>"><%= genre.name %></a></li>
   <% end %>
 </ul>
