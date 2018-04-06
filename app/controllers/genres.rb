@@ -1,15 +1,14 @@
-MovieDb::App.controllers :movies do
-  
-  get :index, :map => '/' do
-    @movies = Movie.order(rating: :desc).limit(5)
+MovieDb::App.controllers :genres do
+  get :index do
+    @genres = Genre.all
     render 'index'
   end
   
   get :index, :with => :id do
-    @movie = Movie.find(params[:id])
-    @title = @movie.title
-    @genres = @movie.genres
-    render 'movie'
+    @genre = Genre.find(params[:id])
+    @name = @genre.name
+    @movies = @genre.movies
+    render 'genre'
   end
 
   
@@ -31,5 +30,6 @@ MovieDb::App.controllers :movies do
   # get '/example' do
   #   'Hello world!'
   # end
+  
 
 end
