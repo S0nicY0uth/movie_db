@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Movie DB</title>
+  <!--link rel="stylesheet" href="css/style.css"-->
+</head>
+<body>
+<h1>Add New Movie</h1>
+<% form_for @movie, '/movies' do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :year %>
+  <%= f.text_field :year %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+  <%= f.submit "Create" %>
+<% end %>
+</body>
+</html>

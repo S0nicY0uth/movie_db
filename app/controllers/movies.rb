@@ -5,12 +5,26 @@ MovieDb::App.controllers :movies do
     render 'index'
   end
   
+  get :new do
+    @movie = Movie.new
+    render 'new'
+  end
+  
   get :index, :with => :id do
     @movie = Movie.find(params[:id])
     @title = @movie.title
     render 'movie'
   end
 
+  post :index do
+    p params
+    @movie = Movie.new(params[:movie])
+    if @movie.save
+      redirect "/movies/#{@movie.id}"
+    else
+      render 'new'
+    end
+  end
   
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'

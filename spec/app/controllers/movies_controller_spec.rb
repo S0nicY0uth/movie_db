@@ -2,11 +2,11 @@ require 'spec_helper'
 
 RSpec.describe "/movies" do
 
-  before do
-    @movie = Movie.create!(title: "Rambo", year: 1982, description: "Sylvester Stallone goes mental in the woods")
-  end
-
   describe "viewing a movie" do
+
+    before do
+      @movie = Movie.create!(title: "Rambo", year: 1982, description: "Sylvester Stallone goes mental in the woods")
+    end
 
     it "should show the movie title" do
       get "/movies/#{@movie.id}"
@@ -28,4 +28,14 @@ RSpec.describe "/movies" do
     end
 
   end
+  
+  describe "adding a movie" do
+    it "should add a movie" do
+      post '/movies', movie: {title: "Rambo", year: 1982, description: "Sylvester Stallone goes mental in the woods"}
+      expect(last_response.status).to eq(302)
+      @movie = Movie.find_by(title: "Rambo")
+      expect(@movie.year).to eq(1982)
+    end
+  end
+  
 end
